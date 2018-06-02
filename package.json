@@ -1,0 +1,28 @@
+{
+  "name": "crud-clientes",
+  "version": "1.0.0",
+  "description": "CRUD básico de cadastro de clientes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manoel-eduardo/CRUD-Clientes.git"
+  },
+  "author": "Eduardo Manoel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manoel-eduardo/CRUD-Clientes/issues"
+  },
+  "homepage": "https://github.com/manoel-eduardo/CRUD-Clientes#readme",
+  "dependencies": {
+    "angular": "^1.6.10"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^2.1.0",
+    "gulp-rename": "^1.2.3"
+  }
+}
