@@ -27,13 +27,17 @@ gulp.task('vendor', function() {
     var styles = [
         './node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',
         './node_modules/bootstrap/dist/css/bootstrap.css',
-        './node_modules/angular-moment-picker/dist/angular-moment-picker.css'
+        './node_modules/angular-moment-picker/dist/angular-moment-picker.css',
+        './node_modules/font-awesome/css/font-awesome.css'
     ];
     concatAndMinify(styles, 'vendor.css', '.min.css', './www/css/');
+
+    var fonts = './node_modules/font-awesome/fonts/**/*';
+    gulp.src(fonts).pipe(gulp.dest('./www/fonts'));
 });
 
 gulp.task('views', function() {
-    gulp.src('app/views/**/*').pipe(gulp.dest('./www/'));
+    gulp.src('app/views/**/*.html').pipe(gulp.dest('./www/'));
 });
 
 gulp.task('scripts', function(){
@@ -42,6 +46,9 @@ gulp.task('scripts', function(){
         './app/routes.js'
     ];
     concatAndMinify(angularApp, 'app.js', '.min.js', './www/js/');
+
+    var controllers = './app/controllers/**/*.controller.js';
+    concatAndMinify(controllers, 'controllers.js', '.min.js', './www/js/');
 });
 
 gulp.task('stylesheets', function(){
