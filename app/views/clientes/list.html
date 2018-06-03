@@ -15,9 +15,9 @@
             <tr ng-repeat="row in $data track by $index">
                 <td title="'Nome'" filter="{nome: 'text'}" sortable="'nome'">{{row.nome}}</td>
                 <td title="'CPF'" filter="{cpf: 'text'}" sortable="'cpf'">{{row.cpf | brCpf}}</td>
-                <td title="'Data Nascimento'">{{row.dtNascimento}}</td>
+                <td title="'Data Nascimento'" filter="{dtNascimento: 'text'}" sortable="'dtNascimento'">{{row.dtNascimento}}</td>
                 <td title="'Ações'" class="center">
-                    <a class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
+                    <a class="btn btn-warning" ng-click="editar($index)"><i class="fa fa-edit"></i> Editar</a>
                     <a class="btn btn-danger" ng-click="excluir($index)"><i class="fa fa-trash"></i> Excluir</a>
                 </td>
             </tr>

@@ -12,4 +12,8 @@ angular.module("myApp").config(['$routeProvider', function($routeProvider) {
         templateUrl : "clientes/form.html",
         controller: 'ClientesFormController'
     })
+    .when("/form/:id", {
+        templateUrl : "clientes/form.html",
+        controller: 'ClientesFormController'
+    })
 }]);

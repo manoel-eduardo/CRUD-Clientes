@@ -1,4 +1,4 @@
-angular.module("myApp").controller('ClientesListController', ['$scope', 'store', 'NgTableParams', '$window', function ($scope, store, NgTableParams, $window) {
+angular.module("myApp").controller('ClientesListController', ['$scope', 'store', 'NgTableParams', '$location', '$window', function ($scope, store, NgTableParams, $location, $window) {
     $scope.tableParams = new NgTableParams({
         page: 1, // show first page
         count: 10 // count per page
@@ -13,6 +13,10 @@ angular.module("myApp").controller('ClientesListController', ['$scope', 'store',
         store.set('clientes', clientes);
         $scope.tableParams.reload();
     };
+
+    $scope.editar = function(id){
+        $location.path( "/form/"+id );
+    }
 
     $scope.gerarAleatorio = function(){
         var nomes = [ 'Alice', 'Miguel', 'Sophia', 'Arthur', 'Helena', 'Bernardo', 'Valentina', 'Heitor'];

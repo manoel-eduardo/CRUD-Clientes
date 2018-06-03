@@ -40,10 +40,10 @@
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <div class="row" ng-if="action == 'edit'">
         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            Data/Hora do cadastro
-            <input type="text" disabled/>
+            Data/Hora do cadastro: <strong>{{cliente.insertedAt}}</strong>
         </div>
     </div>
     
@@ -90,9 +90,3 @@
         </div>
     </div>
 </form>
-<!--
-Regras:
-- A quantidade de telefones é variável, onde cada cliente poderá ter 2 ou mais números distintos
-- O campo de RG será de preenchimento obrigatório;
-- Não permitir cadastrar clientes menores de 18 anos;
--->

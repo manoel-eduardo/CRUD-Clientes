@@ -1,19 +1,26 @@
-angular.module("myApp").controller('ClientesFormController', ['$scope', 'store', '$location', function ($scope, store, $location) {
+angular.module("myApp").controller('ClientesFormController', ['$scope', 'store', '$location', '$routeParams', function ($scope, store, $location, $routeParams) {
     $scope.formClass = 'needs-validation';
     $scope.cpfClass = "form-control";
     $scope.dtNascimentoClass = "form-control";
+    $scope.action = "new";
+
+    if($routeParams.id){
+        $scope.action = "edit";
+        var clientes = store.get('clientes')
+        $scope.cliente = clientes[$routeParams.id];
+    } else {
+        $scope.cliente = {
+            "nome": '',
+            "cpf": '',
+            "dtNascimento": '',
+            "insertedAt": '',
+            "telefones": [{}, {}]
+        };
+    }
 
     $scope.error = {
         'cpf': false,
         'dtNascimento': false
-    };
-
-    $scope.cliente = {
-        "nome": 'Eduardo',
-        "cpf": '10984377646',
-        "dtNascimento": '22/01/1993',
-        "insertedAt": '',
-        "telefones": [{}, {}]
     };
 
     $scope.addTelefone = function(){
@@ -62,24 +69,35 @@ angular.module("myApp").controller('ClientesFormController', ['$scope', 'store',
         }
 
         if(valid){
-            var currentdate = new Date(); 
-            var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+            if($scope.action =- "new"){
+                var currentdate = new Date(); 
+                var datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth()+1)  + "/" 
+                    + currentdate.getFullYear() + " @ "  
+                    + currentdate.getHours() + ":"  
+                    + currentdate.getMinutes() + ":" 
+                    + currentdate.getSeconds();
+                    
+                $scope.cliente.insertedAt = datetime;
+    
+                var clientes = store.get('clientes');
+                if(clientes == null){
+                    clientes = [];
+                }
+                clientes.push($scope.cliente);
+                store.set('clientes', clientes);
+            } else {
+                var clientes = store.get('clientes');
+                var id = $routeParams.id;
+                clientes[id].nome = $scope.cliente.nome;
+                clientes[id].cpf  = $scope.cliente.cpf;
+                clientes[id].dtNascimento = $scope.cliente.dtNascimento;
+                clientes[id].telefones = $scope.cliente.telefones;
                 
-            $scope.cliente.insertedAt = datetime;
-
-            var clientes = store.get('clientes');
-            if(clientes == null){
-                clientes = [];
+                store.set('clientes', clientes);
             }
-            clientes.push($scope.cliente);
-            store.set('clientes', clientes);
+            
             alert('Salvo com sucesso!');
-
             $location.path( "/list" );
         }
     };
