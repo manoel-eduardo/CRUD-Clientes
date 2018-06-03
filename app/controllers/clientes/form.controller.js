@@ -69,7 +69,7 @@ angular.module("myApp").controller('ClientesFormController', ['$scope', 'store',
         }
 
         if(valid){
-            if($scope.action =- "new"){
+            if($scope.action == "new"){
                 var currentdate = new Date(); 
                 var datetime = currentdate.getDate() + "/"
                     + (currentdate.getMonth()+1)  + "/" 
@@ -96,7 +96,7 @@ angular.module("myApp").controller('ClientesFormController', ['$scope', 'store',
                 
                 store.set('clientes', clientes);
             }
-            
+
             alert('Salvo com sucesso!');
             $location.path( "/list" );
         }
