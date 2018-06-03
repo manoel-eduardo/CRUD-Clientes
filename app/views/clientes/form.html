@@ -1,29 +1,29 @@
-<form>
+<form ng-submit="salvar()">
     <div class="row">
         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
             <label for="nome">Nome</label>
             <input id="nome" type="text" class="form-control" ng-model="cliente.nome" placeholder="Informe o nome do cliente..."/>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <label for="cpf">CPF</label>
             <input id="cpf" ui-br-cpf-mask type="text" class="form-control" ng-model="cliente.cpf" placeholder="Informe o CPF..." />
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="form-group col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <label for="dtNascimento">Data de nascimento</label>
-            <div class="input-group" moment-picker="ctrl.datepicker" format="DD/MM/YYYY">
+            <div class="input-group" moment-picker="cliente.dtNascimento" format="DD/MM/YYYY">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
                         <i class="fa fa-calendar"></i>
                     </span>
                 </div>
-                <input id="dtNascimento" class="form-control" placeholder="Informe a data de nascimento..." ng-model="ctrl.datepicker" ng-model-options="{ updateOn: 'blur' }" readonly style="background-color: white;">
+                <input id="dtNascimento" class="form-control" placeholder="Informe a data de nascimento..." ng-model="cliente.dtNascimento" ng-model-options="{ updateOn: 'blur' }" readonly style="background-color: white;">
             </div>
         </div>
     </div>
     
     
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             Data/Hora do cadastro
             <input type="text" disabled/>
         </div>
@@ -31,25 +31,35 @@
 
     <h3>Telefones</h3>
     <hr/>
-    <div class="row">
+    <div ng-if="cliente.telefones.length < 1" class="row">
+        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <input type="text" class="form-control" ng-model="cliente.telefones[0]" ui-br-phone-number-mask placeholder="Informe o número do telefone...">
+        </div>
+    </div>
+    <div ng-if="cliente.telefones.length < 2" class="row">
+        <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <input type="text" class="form-control" ng-model="cliente.telefones[1]" ui-br-phone-number-mask placeholder="Informe o número do telefone...">
+        </div>
+    </div>
+    <div ng-repeat="(key, telefone) in cliente.telefones track by $index" class="row">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <input type="text" class="form-control" ng-model="cliente.telefones" ui-br-phone-number-mask placeholder="Informe o número do telefone...">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" ng-model="cliente.telefones[key]" ui-br-phone-number-mask placeholder="Informe o número do telefone...">
+                <div class="input-group-append">
+                    <a class="btn btn-danger" ng-click="removerTelefone(key)"> - </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <input type="text" class="form-control" ng-model="cliente.telefones" ui-br-phone-number-mask placeholder="Informe o número do telefone...">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <button class="btn btn-primary">+ Adicionar telefone</button>
+            <a class="btn btn-primary" ng-click="addTelefone()">+ Adicionar telefone</a>
         </div>
     </div>
     <hr/>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-            <input type="submit" class="btn btn-success" value="Salvar" />
+            <input type="submit" class="btn btn-success" value="Salvar"/>
         </div>
     </div>
 </form>
