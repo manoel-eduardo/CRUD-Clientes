@@ -1,12 +1,23 @@
-<form ng-submit="salvar()">
+<form name="form" ng-submit="salvar(form)" ng-class="formClass" novalidate>
     <div class="row">
         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
             <label for="nome">Nome</label>
-            <input id="nome" type="text" class="form-control" ng-model="cliente.nome" placeholder="Informe o nome do cliente..."/>
+            <input id="nome" type="text" name="nome" class="form-control" ng-model="cliente.nome" placeholder="Informe o nome do cliente..." required/>
+            <div class="invalid-feedback">
+                Campo obrigatório.
+            </div>
         </div>
         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <label for="cpf">CPF</label>
-            <input id="cpf" ui-br-cpf-mask type="text" class="form-control" ng-model="cliente.cpf" placeholder="Informe o CPF..." />
+            <input id="cpf" ui-br-cpf-mask type="text" name="cpf" ng-class="cpfClass" ng-model="cliente.cpf" placeholder="Informe o CPF..." required/>
+            <div class="invalid-feedback">
+                Campo obrigatório.
+            </div>
+            <div ng-show="error.cpf">
+                <spam>
+                    <small class="text-danger">CPF inválido.</small>
+                </spam>
+            </div>
         </div>
         <div class="form-group col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <label for="dtNascimento">Data de nascimento</label>
@@ -16,11 +27,18 @@
                         <i class="fa fa-calendar"></i>
                     </span>
                 </div>
-                <input id="dtNascimento" class="form-control" placeholder="Informe a data de nascimento..." ng-model="cliente.dtNascimento" ng-model-options="{ updateOn: 'blur' }" readonly style="background-color: white;">
+                <input id="dtNascimento" type="text" name="dtNascimento" ng-class="dtNascimentoClass" placeholder="Informe a data de nascimento..." ng-model="cliente.dtNascimento" ng-model-options="{ updateOn: 'blur' }"  required onkeydown="return false;">
+                <div class="invalid-feedback">
+                    Campo obrigatório.
+                </div>
+            </div>
+            <div ng-show="error.dtNascimento">
+                <spam>
+                    <small class="text-danger">Cadastro permitido apenas para maiores de 18 anos.</small>
+                </spam>
             </div>
         </div>
     </div>
-    
     
     <div class="row">
         <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -28,7 +46,7 @@
             <input type="text" disabled/>
         </div>
     </div>
-
+    
     <h3>Telefones</h3>
     <hr/>
     <div ng-if="cliente.telefones.length < 1" class="row">
