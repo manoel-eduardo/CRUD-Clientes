@@ -20,7 +20,8 @@ gulp.task('vendor', function() {
         './node_modules/angular-input-masks/releases/angular-input-masks.br.js',
         './node_modules/angular-br-filters/release/angular-br-filters.js',
         './node_modules/moment/moment.js',
-        './node_modules/angular-moment-picker/dist/angular-moment-picker.js'
+        './node_modules/angular-moment-picker/dist/angular-moment-picker.js',
+        './node_modules/angular-storage/dist/angular-storage.js'
     ];
     concatAndMinify(scripts, 'vendor.js', '.min.js', './www/js/');
 

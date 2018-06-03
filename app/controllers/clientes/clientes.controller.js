@@ -1,4 +1,4 @@
-angular.module("myApp").controller('ClientesController', ['$scope', function ($scope) {
+angular.module("myApp").controller('ClientesController', ['$scope', 'store', '$location', function ($scope, store, $location) {
     $scope.formClass = 'needs-validation';
     $scope.cpfClass = "form-control";
     $scope.dtNascimentoClass = "form-control";
@@ -62,8 +62,15 @@ angular.module("myApp").controller('ClientesController', ['$scope', function ($s
         }
 
         if(valid){
-            // TODO e retornar para página de listagem
+            var clientes = store.get('clientes');
+            if(clientes == null){
+                clientes = [];
+            }
+            clientes.push($scope.cliente);
+            store.set('clientes', clientes);
             alert('Salvo com sucesso!');
+
+            $location.path( "/list" );
         }
     };
 }]);
