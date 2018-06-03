@@ -1,1 +1,5 @@
-angular.module("myApp", ["ngRoute"]);
+angular.module("myApp", [
+    "ngRoute",
+    "ui.utils.masks",
+    "moment-picker"
+]);
