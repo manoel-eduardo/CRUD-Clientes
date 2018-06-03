@@ -1,1 +1,26 @@
-Olá list!
+<h2 class="page-header">Lista de Clientes</h2>
+<div class="form-group">
+    <div class="btn-toolbar">
+        <div class="btn-group mr-2">
+            <a class="btn btn-success" href="#!form"><i class="fa fa-plus"></i> Adicionar</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" ng-click="gerarAleatorio()"><i class="fa fa-cogs"></i> Gerar aleatórios</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <table ng-table="tableParams" show-filter="true" class="table table-bordered table-striped">
+            <tr ng-repeat="row in $data track by $index">
+                <td title="'Nome'" filter="{nome: 'text'}" sortable="'nome'">{{row.nome}}</td>
+                <td title="'CPF'" filter="{cpf: 'text'}" sortable="'cpf'">{{row.cpf | brCpf}}</td>
+                <td title="'Data Nascimento'">{{row.dtNascimento}}</td>
+                <td title="'Ações'" class="center">
+                    <a class="btn btn-warning"><i class="fa fa-edit"></i> Editar</a>
+                    <a class="btn btn-danger" ng-click="excluir($index)"><i class="fa fa-trash"></i> Excluir</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

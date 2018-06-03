@@ -1,4 +1,4 @@
-angular.module("myApp").controller('ClientesController', ['$scope', 'store', '$location', function ($scope, store, $location) {
+angular.module("myApp").controller('ClientesFormController', ['$scope', 'store', '$location', function ($scope, store, $location) {
     $scope.formClass = 'needs-validation';
     $scope.cpfClass = "form-control";
     $scope.dtNascimentoClass = "form-control";
@@ -62,6 +62,16 @@ angular.module("myApp").controller('ClientesController', ['$scope', 'store', '$l
         }
 
         if(valid){
+            var currentdate = new Date(); 
+            var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+                
+            $scope.cliente.insertedAt = datetime;
+
             var clientes = store.get('clientes');
             if(clientes == null){
                 clientes = [];

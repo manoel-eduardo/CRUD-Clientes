@@ -1,13 +1,15 @@
 angular.module("myApp").config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "clientes/list.html"
+        templateUrl : "clientes/list.html",
+        controller: 'ClientesListController'
     })
     .when("/list", {
-        templateUrl : "clientes/list.html"
+        templateUrl : "clientes/list.html",
+        controller: 'ClientesListController'
     })
     .when("/form", {
         templateUrl : "clientes/form.html",
-        controller: 'ClientesController'
+        controller: 'ClientesFormController'
     })
 }]);

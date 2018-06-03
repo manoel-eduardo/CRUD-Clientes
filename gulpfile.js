@@ -21,7 +21,8 @@ gulp.task('vendor', function() {
         './node_modules/angular-br-filters/release/angular-br-filters.js',
         './node_modules/moment/moment.js',
         './node_modules/angular-moment-picker/dist/angular-moment-picker.js',
-        './node_modules/angular-storage/dist/angular-storage.js'
+        './node_modules/angular-storage/dist/angular-storage.js',
+        './node_modules/ng-table/bundles/ng-table.js'
     ];
     concatAndMinify(scripts, 'vendor.js', '.min.js', './www/js/');
 
@@ -29,7 +30,8 @@ gulp.task('vendor', function() {
         './node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',
         './node_modules/bootstrap/dist/css/bootstrap.css',
         './node_modules/angular-moment-picker/dist/angular-moment-picker.css',
-        './node_modules/font-awesome/css/font-awesome.css'
+        './node_modules/font-awesome/css/font-awesome.css',
+        './node_modules/ng-table/bundles/ng-table.css'
     ];
     concatAndMinify(styles, 'vendor.css', '.min.css', './www/css/');
 
